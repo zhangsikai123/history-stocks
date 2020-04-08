@@ -1,0 +1,6 @@
+---
+-
+  alias: stocks
+  urls:
+    - mysql+pymysql://stocks:Leili%40123@localhost/stocks
+  echo: false
