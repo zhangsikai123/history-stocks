@@ -6,5 +6,3 @@ from os import environ as ENV, path as PATH
 
 ENV['root'] = PATH.abspath(PATH.join(PATH.dirname(__file__), '..'))
 STAGE = ENV.get('stage', 'dev')
-
-

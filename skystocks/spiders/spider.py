@@ -66,9 +66,8 @@ class HistoryStockSpider(scrapy.Spider):
 
     def start_requests(self):
         for code in self.code_pool:
-            start_date = self.start_date
-            end_date = (datetime.strptime(start_date, self.DATE_FORMAT) + timedelta(days=self.interval)).strftime(
-                self.DATE_FORMAT)
+            start_date = getattr(self, 'start_date', self.start_date)
+            end_date = (datetime.strptime(start_date, self.DATE_FORMAT) + timedelta(days=self.interval)).strftime(self.DATE_FORMAT)
             url = QueryGen.stock_data_query(start_date, end_date, code)
             yield scrapy.Request(url=url, callback=self.parse,
                                  cb_kwargs={'start_date': start_date, 'end_date': end_date, 'code': code})

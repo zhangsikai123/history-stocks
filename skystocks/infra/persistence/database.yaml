@@ -2,5 +2,5 @@
 -
   alias: stocks
   urls:
-    - mysql+pymysql://stocks:Leili%40123@localhost/stocks
+    - mysql+pymysql://stocks:yNPJvTnPuF7me%26A%7D@whereeat.xyz:3306/stocks
   echo: false

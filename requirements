@@ -1,7 +1,6 @@
 PyYAML
-null
-selenium
 logger
 SQLAlchemy
 pymysql
 ujson
+redis

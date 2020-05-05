@@ -4,7 +4,6 @@
 # @Time    : 5/24/19 9:41 AM
 # this file must be put in the same dir as database-*.yaml
 import os
-from collections import defaultdict
 from os.path import join
 import yaml
 from os import environ as ENV

@@ -3,4 +3,9 @@
   alias: stocks
   urls:
     - mysql+pymysql://stocks:Leili%40123@localhost/stocks_dev
-  echo: false
+  echo: true
+-
+  alias: acid
+  urls:
+   - mysql+pymysql://acid:Leili%40123@localhost/acid
+  echo: true
