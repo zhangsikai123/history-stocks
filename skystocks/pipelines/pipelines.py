@@ -75,10 +75,14 @@ class PersistPipeline(object):
             wrapped = Stock(**stock_item)
             wrapped_data_list.append(wrapped)
         begin_t = datetime.now()
+        logger.info('before dedup: data_list size: {}"'.format(len(wrapped_data_list)))
         wrapped_data_list = self.dedup(wrapped_data_list) # 去重
+        logger.info('after dedup: data_list size: {}"'.format(len(wrapped_data_list)))
         end_t = datetime.now()
         time_elapsed = (end_t - begin_t).seconds
         logger.info('pipeline:deduplicate::time [{} s]'.format(time_elapsed))
+        if len(wrapped_data_list) == 0:
+            return
         try:
             self.session.add_all(wrapped_data_list)
             self.session.commit()
@@ -90,7 +94,8 @@ class PersistPipeline(object):
             # 感觉应该专门写一个dedup func来解决这个问题
             self.session.rollback()
             logger.error("persist pipeline session failed due to {}, rollback...".format(e))
-
+            return
+        logger.info("{} data points persisted successfully".format(len(wrapped_data_list)))
     def data_hash_code(self, wrapped_data):
         return "{}:{}".format(wrapped_data.code, wrapped_data.date)
 
